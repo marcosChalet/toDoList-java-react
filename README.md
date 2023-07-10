@@ -2,6 +2,10 @@
 
 Este é um projeto de uma aplicação Todo List desenvolvida utilizando Spring Boot no backend e React com TypeScript no frontend. A aplicação permite ao usuário criar, visualizar, atualizar e excluir tarefas de uma lista.
 
+
+![image](https://github.com/marcosChalet/todolist-java-react/assets/72557256/e0fb171d-6cd0-4706-9414-12455060014d)
+
+
 ## Pré-requisitos
 
 Antes de executar o projeto, certifique-se de ter as seguintes ferramentas instaladas em seu ambiente de desenvolvimento:
