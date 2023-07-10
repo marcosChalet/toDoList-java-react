@@ -66,7 +66,7 @@ A estrutura de pacotes do backend segue a convenção do Spring Boot:
 - `com.mchalet.todoapp.controller`: contém os controladores REST para a API
 - `com.mchalet.todoapp.model`: define os modelos de dados da aplicação
 - `com.mchalet.todoapp.repository`: implementa as operações de acesso aos dados
-- `com.mchalet.todoapp.service`: contém as classes de serviço para manipulação das tarefas (fazer/refatorar)
+- `com.mchalet.todoapp.service`: contém as classes de serviço para manipulação das tarefas
 
 #### Adicione os dados do banco
 > 👮 Não esqueça de criar o banco ***todoappdb*** em seu postgreSQL
@@ -88,6 +88,7 @@ O frontend foi desenvolvido utilizando React com TypeScript e faz chamadas para 
 A estrutura do projeto frontend é a seguinte:
 
 - `src`: diretório raiz do código fonte
+- `src/core`: contém as interfaces/types/classes para utilização em todo projeto
 - `src/components`: contém os componentes reutilizáveis da aplicação
 - `src/hooks`: contém os serviços/lógica responsáveis por realizar as chamadas à API
 - `src/App.tsx`: contém a página inicial da aplicação
