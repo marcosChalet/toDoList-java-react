@@ -2,4 +2,4 @@ package com.mchalet.todoapp.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record TodoRecordDTO(@NotBlank String title) { }
+public record TodoListRecordDTO(@NotBlank String title) { }
