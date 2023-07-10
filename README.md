@@ -30,7 +30,7 @@ Siga as etapas abaixo para configurar o projeto em sua máquina local:
 
 1. Clone o repositório do projeto do GitHub:
 ```
-git clone https://github.com/seu-usuario/todo-list.git
+git clone https://github.com/marcosChalet/todolist-java-react
 ```
 
 2. Compile e execute o backend utilizando o Maven:
