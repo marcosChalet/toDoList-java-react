@@ -10,13 +10,9 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "TODOS")
-public class TodoItemModel {
+public class ToDoItemModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private String todo;
-    
-    @ManyToOne
-    @JoinColumn(name="todo_list_id", nullable=false)
-	TodoListModel todoList;
+    private String toDo;
 }

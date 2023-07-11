@@ -5,7 +5,7 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.mchalet.todoapp.model.TodoItemModel;
+import com.mchalet.todoapp.model.ToDoItemModel;
 
 @Repository
-public interface TodoItemRepository extends JpaRepository<TodoItemModel, UUID> { }
+public interface ToDoItemRepository extends JpaRepository<ToDoItemModel, UUID> { }

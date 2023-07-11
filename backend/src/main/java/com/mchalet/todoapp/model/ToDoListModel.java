@@ -5,18 +5,19 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "TODO_LISTS")
-public class TodoListModel extends RepresentationModel<TodoListModel>  {
+public class ToDoListModel extends RepresentationModel<ToDoListModel>  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
 
-    @OneToMany(mappedBy="todo_list")
-    private Set<TodoItemModel> todos;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "todo_list_id")
+    private List<ToDoItemModel> toDos;
 }
