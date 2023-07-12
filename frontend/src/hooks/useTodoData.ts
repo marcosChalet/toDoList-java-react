@@ -1,16 +1,16 @@
 import axios, { AxiosPromise } from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { TodoType } from "../core/todoType";
+import { ToDoType } from "../core/toDoType";
 
-async function fetchTodos(): AxiosPromise<[TodoType]> {
+async function fetchToDos(): AxiosPromise<[ToDoType]> {
   const response = await axios.get("http://localhost:8080/todos");
   return response;
 }
 
-export function useTodoData() {
+export function useToDoData() {
   const query = useQuery({
-    queryFn: fetchTodos,
-    queryKey: ["todo-data"],
+    queryFn: fetchToDos,
+    queryKey: ["toDo-data"],
     retry: 2,
   });
 
