@@ -26,7 +26,7 @@ export default function Modal(props: any) {
       >
         <div className="w-[700px]">
           <h1 className="text-start w-full text-5xl mb-8 uppercase font-bold inline-block bg-gradient-to-r from-rose-600 to-violet-800 bg-clip-text text-transparent">
-            My Todo App
+            To-do App
           </h1>
           <div className="bg-slate-700 rounded-md max-h-96 overflow-y-auto">
             {toDos?.map((todoItem: ToDoType, idx: number) => (
