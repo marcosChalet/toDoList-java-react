@@ -1,24 +1,47 @@
-import { HiMiniTrash } from "react-icons/hi2";
-// import { useToDoDataDelete } from "../hooks/useToDoDataDelete";
+import { BsThreeDots } from "react-icons/bs";
 import { ToDoListType } from "../core/toDoListType";
+import { ToDoType } from "../core/toDoType";
 
-export default function ToDoList({ id, title }: ToDoListType) {
-  // const { mutate: mutateDelete } = useToDoDataDelete();
-
-  function deletefn() {
-    //mutateDelete(id ?? -1);
-  }
-
+export default function ToDoList({
+  toDoList,
+  selectList,
+}: {
+  toDoList: ToDoListType;
+  selectList: (item: ToDoType[]) => void;
+}) {
   return (
-    <div className="flex items-center justify-between px-2 text-lg w-full h-16">
-      <p className="whitespace-nowrap overflow-x-hidden">{title}</p>
-      <div className="flex items-center gap-1 ml-1">
-        <button
-          onClick={deletefn}
-          className="text-xl text-red-600 p-1 rounded-full hover:scale-125 duration-300"
-        >
-          <HiMiniTrash />
-        </button>
+    <div
+      onClick={() => selectList(toDoList.toDos)}
+      key={toDoList.id}
+      className="overflow-hidden relative px-3 bg-slate-800 rounded-md w-72 h-48 flex justify-center items-center duration-200 hover:translate-x-1 hover:translate-y-2 hover:cursor-crosshair"
+    >
+      <div className="absolute p-1 right-2 top-1 text-2xl text-slate-400 hover:cursor-pointer">
+        <BsThreeDots />
+      </div>
+      <div
+        className={`absolute top-2 left-2 animate-pulse rounded-full w-2 h-2 
+          ${
+            toDoList.toDoType === 1
+              ? "bg-sky-500"
+              : toDoList.toDoType === 2
+              ? "bg-yellow-500"
+              : toDoList.toDoType === 3
+              ? "bg-green-600"
+              : "bg-sky-500"
+          }
+        `}
+      />
+      <h2 className="max-h-36 uppercase font-bold text-3xl text-left flex justify-center items-center flex-wrap bg-gradient-to-r from-rose-600 to-purple-600 bg-clip-text text-transparent">
+        #{toDoList.id}
+        {` `}
+        {toDoList.title}
+      </h2>
+      <div className="flex whitespace-nowrap gap-1 absolute bottom-1 left-1 w-[95%] px-1 overflow-x-clip">
+        {toDoList.tags.map((tag: string) => (
+          <p key={tag} className="text-xs text-slate-500 min-w-fit">
+            <strong>#{tag.replace(" ", "-")}</strong>
+          </p>
+        ))}
       </div>
     </div>
   );
