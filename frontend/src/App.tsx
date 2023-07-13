@@ -175,11 +175,19 @@ const toDoLists = [
 export default function App() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [toDoListToShow, setToDoListToShow] = useState<[ToDoType]>();
-  const [showModalCreateList, setShowModalCreateList] = useState<boolean>(false);
+  const [showModalCreateList, setShowModalCreateList] =
+    useState<boolean>(false);
 
   function selectList(item: [ToDoType]) {
     setToDoListToShow(item);
     setShowModal(true);
+  }
+
+  function dropModal(e, cb: any) {
+    if (e.clientX === 0 && e.clientY === 0) {
+      return;
+    }
+    cb();
   }
 
   return (
@@ -239,7 +247,7 @@ export default function App() {
       </button>
       {showModal && (
         <div
-          onClick={() => setShowModal(false)}
+          onClick={(e) => dropModal(e, () => setShowModal(false))}
           className="absolute w-full h-full backdrop-blur-sm overflow-hidden transition-opacity"
         >
           <Modal toDos={toDoListToShow} />
@@ -247,7 +255,7 @@ export default function App() {
       )}
       {showModalCreateList && (
         <div
-          onClick={() => setShowModalCreateList(false)}
+          onClick={(e) => dropModal(e, () => setShowModalCreateList(false))}
           className="absolute w-full h-full backdrop-blur-sm overflow-hidden transition-opacity"
         >
           <ModalCreateList />
