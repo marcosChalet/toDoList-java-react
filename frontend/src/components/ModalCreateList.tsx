@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BsCheckLg, BsThreeDots } from "react-icons/bs";
+import { BsThreeDots } from "react-icons/bs";
 import BaseModal from "./BaseModal";
 
 export default function ModalCreateList() {
@@ -16,9 +16,14 @@ export default function ModalCreateList() {
     }
   }
 
+  function changeType(type: number) {
+    if (type >= 4 || type <= -1) return;
+    setType(type);
+  }
+
   return (
     <BaseModal>
-      <>
+      <div className="flex flex-col justify-center items-center gap-8">
         <div className="overflow-hidden relative px-3 bg-slate-800 rounded-md w-72 h-48 flex justify-center items-center duration-200 hover:translate-x-1 hover:translate-y-2 hover:cursor-crosshair">
           <div className="absolute p-1 right-2 top-1 text-2xl text-slate-400 hover:cursor-pointer">
             <BsThreeDots />
@@ -59,32 +64,32 @@ export default function ModalCreateList() {
           method="POST"
           className="w-full h-full flex justify-center items-center"
         >
-          <div className="flex flex-col justify-center items-center gap-3 w-[500px]">
+          <div className="flex flex-col justify-center items-center gap-3 w-[500px] text-slate-400">
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               type="text"
               placeholder="título"
-              className="w-full p-1 rounded-sm bg-slate-700"
+              className="w-full p-2 px-3 rounded-sm bg-slate-800"
             />
             <input
               value={type}
-              onChange={(e) => setType(+e.target.value)}
+              onChange={(e) => changeType(+e.target.value)}
               type="number"
               placeholder="tipo"
-              className="w-full p-1 rounded-sm bg-slate-700"
+              className="w-full p-2 px-3 rounded-sm bg-slate-800"
             />
             <input
               value={tag}
               onChange={(e) => setTag(e.target.value)}
               type="text"
               placeholder="tag"
-              className="w-full p-1 rounded-sm bg-slate-700"
+              className="w-full p-2 px-3 rounded-sm bg-slate-800"
               onKeyUp={(e) => addTag(e, tag)}
             />
           </div>
         </form>
-      </>
+      </div>
     </BaseModal>
   );
 }
