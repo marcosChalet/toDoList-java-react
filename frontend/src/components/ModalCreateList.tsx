@@ -10,6 +10,7 @@ export default function ModalCreateList() {
   const [tag, setTag] = useState<string>("");
 
   function addTag(e: React.KeyboardEvent<HTMLInputElement>, currText: string) {
+    if (currText === "") return;
     if (e.key === "Enter") {
       setTags((prev: string[]) => [...prev, currText]);
       setTag("");
