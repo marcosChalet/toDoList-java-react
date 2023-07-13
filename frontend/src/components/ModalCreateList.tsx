@@ -89,6 +89,7 @@ export default function ModalCreateList() {
             />
 
             <input
+              disabled
               onSubmit={(e) => e.preventDefault()}
               type="submit"
               className="bg-slate-700 text-lg font-bold uppercase w-full h-12 duration-300 hover:cursor-pointer hover:bg-slate-950"
