@@ -87,6 +87,12 @@ export default function ModalCreateList() {
               className="w-full p-2 px-3 rounded-sm bg-slate-800"
               onKeyUp={(e) => addTag(e, tag)}
             />
+
+            <input
+              onSubmit={(e) => e.preventDefault()}
+              type="submit"
+              className="bg-slate-700 text-lg font-bold uppercase w-full h-12 duration-300 hover:cursor-pointer hover:bg-slate-950"
+            />
           </div>
         </form>
       </div>
