@@ -82,7 +82,7 @@ export default function ModalCreateList() {
             />
             <input
               value={tag}
-              onChange={(e) => setTag(e.target.value)}
+              onChange={(e) => setTag(e.target.value.trimStart())}
               type="text"
               placeholder="tag"
               className="w-full p-2 px-3 rounded-sm bg-slate-800"
