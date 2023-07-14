@@ -14,5 +14,5 @@ public class TagModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    String tag;
+    String name;
 }
