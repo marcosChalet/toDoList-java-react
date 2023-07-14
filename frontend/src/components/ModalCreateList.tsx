@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import BaseModal from "./BaseModal";
+import { TagType, ToDoListType } from "../core/toDoListType";
+
+import { useToDoCreateList } from "../hooks/useListDataCreate"
 
 export default function ModalCreateList() {
   const [id] = useState<number>(16);
@@ -8,6 +11,8 @@ export default function ModalCreateList() {
   const [type, setType] = useState<number>(-1);
   const [tags, setTags] = useState<string[]>([]);
   const [tag, setTag] = useState<string>("");
+
+  const { mutate: insertList } = useToDoCreateList();
 
   function addTag(e: React.KeyboardEvent<HTMLInputElement>, currText: string) {
     if (currText === "") return;
@@ -20,6 +25,24 @@ export default function ModalCreateList() {
   function changeType(type: number) {
     if (type >= 4 || type <= -1) return;
     setType(type);
+  }
+
+  function createList(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    // e.preventDefault();
+    const tagList: TagType[] = tags.map((tag: string) => {
+      const tagTmp: TagType = {
+        name: tag
+      }
+      return tagTmp;
+    })
+    const list: ToDoListType = {
+      title,
+      toDoType: type,
+      tags: tagList,
+      toDos: []
+    }
+    console.log(list);
+    insertList(list);
   }
 
   return (
@@ -61,8 +84,7 @@ export default function ModalCreateList() {
           </div>
         </div>
 
-        <form
-          method="POST"
+        <div     
           className="w-full h-full flex justify-center items-center"
         >
           <div className="flex flex-col justify-center items-center gap-3 w-[500px] text-slate-400">
@@ -91,12 +113,12 @@ export default function ModalCreateList() {
 
             <button
               disabled
-              onSubmit={(e) => e.preventDefault()}
+              onClick={(e) => createList(e)}
               type="submit"
               className="bg-slate-700 text-lg font-bold uppercase w-full h-12 duration-300 hover:cursor-pointer hover:bg-slate-950"
             >criar</button>
           </div>
-        </form>
+        </div>
       </div>
     </BaseModal>
   );

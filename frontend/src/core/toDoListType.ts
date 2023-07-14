@@ -1,7 +1,7 @@
 import { ToDoType } from "./toDoType";
 
 export interface TagType {
-  id: number,
+  id?: number,
   name: string,
 }
 
