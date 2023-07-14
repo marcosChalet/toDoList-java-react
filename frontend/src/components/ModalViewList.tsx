@@ -1,18 +1,27 @@
 import { useRef } from "react";
 import { BsFillSendPlusFill } from "react-icons/bs";
-import { ToDoType } from "../core/toDoType";
+import { MutateType, ToDoType } from "../core/toDoType";
 import ToDo from "./ToDo";
 import BaseModal from "./BaseModal";
+import { ToDoListType } from "../core/toDoListType";
 
-export default function ModalViewList({ toDos }: { toDos: ToDoType[] }) {
+import { useToDoDataMutate } from '../hooks/useTodoDataMutate'
+
+export default function ModalViewList({ toDoList }: { toDoList: ToDoListType | null}) {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const { mutate } = useToDoDataMutate();
 
   function addTodo() {
-    /*const toDo = inputRef.current?.value ?? "";
-    const toDoTemp: TodoType = {
+    const toDo = {
+      toDo: inputRef.current?.value ?? "",
+    }
+
+    const mutateToDo: MutateType = {
+      id: toDoList?.id ?? -1,
       toDo,
     };
-    mutate(toDoTemp);*/
+
+    mutate(mutateToDo);
     if (inputRef.current && inputRef.current.value) {
       inputRef.current.value = "";
     }
@@ -25,7 +34,7 @@ export default function ModalViewList({ toDos }: { toDos: ToDoType[] }) {
           To-do App
         </h1>
         <div className="bg-slate-700 rounded-md max-h-96 overflow-y-auto">
-          {toDos?.map((toDoItem: ToDoType, idx: number) => (
+          {toDoList?.toDos?.map((toDoItem: ToDoType, idx: number) => (
             <ToDo
               key={toDoItem.id}
               idx={idx}

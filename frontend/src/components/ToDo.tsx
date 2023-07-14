@@ -1,5 +1,5 @@
 import { HiMiniTrash } from "react-icons/hi2";
-import { useToDoDataDelete } from "../hooks/useToDoDataDelete";
+import { useToDoDataDelete } from "../hooks/useTodoDataDelete";
 
 export default function ToDo({
   idx,
@@ -10,10 +10,10 @@ export default function ToDo({
   id: number;
   title: string;
 }) {
-  // const { mutate: mutateDelete } = useToDoDataDelete();
+  const { mutate: mutateDelete } = useToDoDataDelete();
 
   function deletefn() {
-    // mutateDelete(id);
+    mutateDelete(id);
   }
 
   return (

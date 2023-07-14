@@ -2,19 +2,20 @@ import ToDoList from "./components/ToDoList";
 import ModalViewList from "./components/ModalViewList";
 import ModalCreateList from "./components/ModalCreateList";
 import { ToDoListType } from "./core/toDoListType";
-import { toDoLists } from "../staticdemo";
-import { ToDoType } from "./core/toDoType";
+import { useToDoData } from "./hooks/useListsData";
 
 import { MdNoteAdd } from "react-icons/md";
 import { useState } from "react";
 
 export default function App() {
+
+  const {data: toDoLists2} = useToDoData();
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [toDoListToShow, setToDoListToShow] = useState<ToDoType[]>([]);
+  const [toDoListToShow, setToDoListToShow] = useState<ToDoListType>();
   const [showModalCreateList, setShowModalCreateList] =
     useState<boolean>(false);
 
-  function selectList(item: ToDoType[]) {
+  function selectList(item: ToDoListType) {
     setToDoListToShow(item);
     setShowModal(true);
   }
@@ -38,8 +39,7 @@ export default function App() {
       </header>
       <main className="container px-16 py-10 m-auto">
         <section className="flex gap-8 flex-wrap justify-center items-center">
-          {toDoLists
-            .map((list: ToDoListType) => (
+          {toDoLists2?.map((list: ToDoListType) => (
               <ToDoList key={list.id} toDoList={list} selectList={selectList} />
             ))
             .reverse()}
@@ -56,7 +56,7 @@ export default function App() {
           onClick={(e) => dropModal(e, () => setShowModal(false))}
           className="absolute w-full h-full backdrop-blur-sm overflow-hidden transition-opacity"
         >
-          <ModalViewList toDos={toDoListToShow} />
+          <ModalViewList toDoList={toDoListToShow ?? null} />
         </div>
       )}
       {showModalCreateList && (

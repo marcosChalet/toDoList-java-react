@@ -1,17 +1,16 @@
 import { BsThreeDots } from "react-icons/bs";
-import { ToDoListType } from "../core/toDoListType";
-import { ToDoType } from "../core/toDoType";
+import { TagType, ToDoListType } from "../core/toDoListType";
 
 export default function ToDoList({
   toDoList,
   selectList,
 }: {
   toDoList: ToDoListType;
-  selectList: (item: ToDoType[]) => void;
+  selectList: (item: ToDoListType) => void;
 }) {
   return (
     <div
-      onClick={() => selectList(toDoList.toDos)}
+      onClick={() => selectList(toDoList)}
       key={toDoList.id}
       className="overflow-hidden relative px-3 bg-slate-800 rounded-md w-72 h-48 flex justify-center items-center duration-200 hover:translate-x-1 hover:translate-y-2 hover:cursor-crosshair"
     >
@@ -37,9 +36,9 @@ export default function ToDoList({
         {toDoList.title}
       </h2>
       <div className="flex whitespace-nowrap gap-1 absolute bottom-1 left-1 w-[95%] px-1 overflow-x-clip">
-        {toDoList.tags.map((tag: string) => (
-          <p key={tag} className="text-xs text-slate-500 min-w-fit">
-            <strong>#{tag.replace(" ", "-")}</strong>
+        {toDoList.tags.map((tag: TagType) => (
+          <p key={tag.id} className="text-xs text-slate-500 min-w-fit">
+            <strong>#{tag.name.replace(" ", "-")}</strong>
           </p>
         ))}
       </div>
