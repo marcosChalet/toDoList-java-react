@@ -1,9 +1,5 @@
-FROM maven:3.9.3-eclipse-temurin-17 AS build
-COPY /backend/src /app/src
-COPY /backend/pom.xml /app
-RUN mvn -f /app/pom.xml clean package -Dmaven.test.skip
+FROM openjdk:17-jdk-alpine
 
-FROM eclipse-temurin:17-jdk-alpine
-EXPOSE 8080
-COPY --from=build /app/target/*.jar app.jar
-ENTRYPOINT [ "java", "-jar", "/app.jar" ]
+COPY backend/target/todoapp-0.0.1-SNAPSHOT.jar app-1.0.0.jar
+
+ENTRYPOINT [ "java", "-jar", "app-1.0.0.jar" ]
