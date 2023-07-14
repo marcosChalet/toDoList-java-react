@@ -36,7 +36,7 @@ export default function App() {
           To-do App
         </p>
       </header>
-      <main className="container px-16 py-10">
+      <main className="container px-16 py-10 m-auto">
         <section className="flex gap-8 flex-wrap justify-center items-center">
           {toDoLists
             .map((list: ToDoListType) => (
