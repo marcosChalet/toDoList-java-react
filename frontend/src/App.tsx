@@ -1,57 +1,72 @@
-import { useRef } from "react";
-import Todo from "./components/Todo";
-import { TodoType } from "./core/todoType";
-import { useTodoData } from "./hooks/useTodoData";
-import { useTodoDataMutate } from "./hooks/useTodoDataMutate";
-import { BsFillSendPlusFill } from "react-icons/bs";
+import ToDoList from "./components/ToDoList";
+import ModalViewList from "./components/ModalViewList";
+import ModalCreateList from "./components/ModalCreateList";
+import { ToDoListType } from "./core/toDoListType";
+import { useToDoData } from "./hooks/useListsData";
+
+import { MdNoteAdd } from "react-icons/md";
+import { useState } from "react";
 
 export default function App() {
-  const { data } = useTodoData();
-  const { mutate } = useTodoDataMutate();
-  const inputRef = useRef<HTMLInputElement | null>(null);
 
-  function addTodo() {
-    const title = inputRef.current?.value ?? "";
-    const todo: TodoType = {
-      title,
-    };
-    mutate(todo);
-    if (inputRef.current && inputRef.current.value) {
-      inputRef.current.value = "";
+  const {data: toDoLists2} = useToDoData();
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [toDoListToShow, setToDoListToShow] = useState<ToDoListType>();
+  const [showModalCreateList, setShowModalCreateList] =
+    useState<boolean>(false);
+
+  function selectList(item: ToDoListType) {
+    setToDoListToShow(item);
+    setShowModal(true);
+  }
+
+  function dropModal(
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    cb: () => void
+  ) {
+    if (e.clientX === 0 && e.clientY === 0) {
+      return;
     }
+    cb();
   }
 
   return (
-    <div className="dark:[color-scheme:dark] bg-slate-950 text-slate-300 w-screen h-screen overflow-auto box-border flex justify-center items-center">
-      <div className="w-[700px]">
-        <h1 className="text-5xl mb-8 uppercase font-bold inline-block bg-gradient-to-r from-violet-700 to-red-700 bg-clip-text text-transparent">
-          Todo App
-        </h1>
-        <div className="bg-slate-700 rounded-md max-h-96 overflow-y-auto">
-          {data?.map((todo: TodoType, idx: number) => (
-            <Todo
-              key={todo.id}
-              idx={idx}
-              id={todo.id ?? -1}
-              title={todo.title}
-            ></Todo>
-          ))}
+    <div className="dark:[color-scheme:dark] bg-slate-950 text-slate-300 w-screen h-screen overflow-auto box-border grid grid-rows-[90px_1fr]">
+      <header className="w-full px-8 flex justify-start items-center">
+        <p className="text-4xl uppercase font-bold inline-block bg-gradient-to-r from-violet-700 to-red-700 bg-clip-text text-transparent">
+          To-do App
+        </p>
+      </header>
+      <main className="container px-16 py-10 m-auto">
+        <section className="flex gap-8 flex-wrap justify-center items-center">
+          {toDoLists2?.map((list: ToDoListType) => (
+              <ToDoList key={list.id} toDoList={list} selectList={selectList} />
+            ))
+            .reverse()}
+        </section>
+      </main>
+      <button
+        onClick={() => setShowModalCreateList(true)}
+        className="absolute p-2 text-4xl bg-gradient-to-r from-rose-600 to-purple-600 rounded-es-xl rounded-se-xl bottom-12 right-12 duration-300 hover:scale-110 hover:cursor-cell"
+      >
+        <MdNoteAdd />
+      </button>
+      {showModal && (
+        <div
+          onClick={(e) => dropModal(e, () => setShowModal(false))}
+          className="absolute w-full h-full backdrop-blur-sm overflow-hidden transition-opacity"
+        >
+          <ModalViewList toDoList={toDoListToShow ?? null} />
         </div>
-        <div className="flex justify-between items-center mt-3 h-14">
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="digite sua nota"
-            className="bg-transparent text-slate-300 w-full h-full px-2 rounded-r-none rounded-md outline-none border-dashed border-2 border-r-0 border-slate-500 text-lg"
-          />
-          <button
-            onClick={addTodo}
-            className="flex items-center justify-center w-12 h-full border-2 border-l-0 border-dashed rounded-l-none rounded-md border-slate-500 pr-2"
-          >
-            <BsFillSendPlusFill className="text-slate-300 text-2xl hover:scale-125 duration-300" />
-          </button>
+      )}
+      {showModalCreateList && (
+        <div
+          onClick={(e) => dropModal(e, () => setShowModalCreateList(false))}
+          className="absolute w-full h-full backdrop-blur-sm overflow-hidden transition-opacity"
+        >
+          <ModalCreateList />
         </div>
-      </div>
+      )}
     </div>
   );
 }

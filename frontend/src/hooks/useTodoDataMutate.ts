@@ -1,13 +1,13 @@
 import axios, { AxiosPromise } from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { TodoType } from "../core/todoType";
+import { MutateType } from "../core/toDoType";
 
-async function postTodos(data: TodoType): AxiosPromise<[TodoType]> {
-  const response = await axios.post("http://localhost:8080/todos", data);
+async function postTodos(data: MutateType): AxiosPromise<[MutateType]> {
+  const response = await axios.post(`http://localhost:8080/lists/${data.id}/add`, data.toDo);
   return response;
 }
 
-export function useTodoDataMutate() {
+export function useToDoDataMutate() {
 
   const queryClient = useQueryClient()
 
@@ -15,7 +15,7 @@ export function useTodoDataMutate() {
     mutationFn: postTodos,
     retry: 2,
     onSuccess: async () => {
-      await queryClient.invalidateQueries(['todo-data'])
+      await queryClient.invalidateQueries(['toDo-data'])
     }
   });
 

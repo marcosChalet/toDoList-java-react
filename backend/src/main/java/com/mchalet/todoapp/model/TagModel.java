@@ -4,15 +4,15 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
 import java.util.UUID;
 
 @Getter
 @Setter
-// @Entity
-public class TodoItemModel {
+@Entity
+@Table(name = "TAGS")
+public class TagModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private String todo;
+    String name;
 }
