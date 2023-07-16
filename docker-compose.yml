@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   app:
@@ -6,7 +6,7 @@ services:
     image: mchalet/todoapp:1.0.0
     build: .
     ports:
-      - 8081:8080
+      - 8080:8080
     environment:
       - DATABASE_URL=jdbc:postgresql://db:5432/todoappdbp
       - DATABASE_USERNAME=postgres
@@ -14,10 +14,10 @@ services:
     depends_on:
       - db
   db:
-    image: 'postgres:12'
+    image: "postgres:12"
     container_name: db
     ports:
-      - "5433:5432"
+      - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
