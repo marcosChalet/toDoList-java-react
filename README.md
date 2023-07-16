@@ -2,17 +2,15 @@
 
 Este é um projeto de uma aplicação Todo List desenvolvida utilizando Spring Boot no backend e React com TypeScript no frontend. A aplicação permite ao usuário criar, visualizar, atualizar e excluir tarefas de uma lista.
 
-
-![image](https://github.com/marcosChalet/todolist-java-react/assets/72557256/e0fb171d-6cd0-4706-9414-12455060014d)
-
+![image](https://github.com/marcosChalet/todolist-java-react/assets/72557256/71a96513-bfc1-4ee2-a08c-1169177c726b)
 
 ## Pré-requisitos
 
 Antes de executar o projeto, certifique-se de ter as seguintes ferramentas instaladas em seu ambiente de desenvolvimento:
 
 - Java Development Kit (JDK) 17 ou superior
-- Node.js e npm (Node Package Manager)
-- postgreSQL
+- Node.js e npm (Node Package Manager v18.x)
+- docker e docker compose
 - Git
 
 ## Recomendação de Ambiente
@@ -21,7 +19,6 @@ Fica de recomendação esse ambiente para o desenvolvimento:
 
 - IntelliJ IDEA (Backend)
 - Postman
-- pgAdmin
 - Visual Studio Code (Front-end)
 
 ## Configuração
@@ -33,15 +30,16 @@ Siga as etapas abaixo para configurar o projeto em sua máquina local:
 git clone https://github.com/marcosChalet/todolist-java-react todo-list
 ```
 
-2. Compile e execute o backend utilizando o Maven:
+2. Compile e execute o backend utilizando o Docker:
 ```
 cd todo-list/backend
-./mvnw spring-boot:run
+mvn clean install -DskipTests
+cd .. && docker compose up --build
 ```
 
-3. Inicie o servidor de desenvolvimento do frontend:
+3. Inicie o frontend:
 ```
-cd ../frontend
+cd frontend
 npm install
 npm run dev
 ```
@@ -67,19 +65,6 @@ A estrutura de pacotes do backend segue a convenção do Spring Boot:
 - `com.mchalet.todoapp.model`: define os modelos de dados da aplicação
 - `com.mchalet.todoapp.repository`: implementa as operações de acesso aos dados
 - `com.mchalet.todoapp.service`: contém as classes de serviço para manipulação das tarefas
-
-#### Adicione os dados do banco
-> 👮 Não esqueça de criar o banco ***todoappdb*** em seu postgreSQL
-```
-// Em resources/application.properties
-
-spring.datasource.driver-class-name=org.postgresql.Driver
-spring.datasource.url=jdbc:postgresql://localhost:5432/todoappdb
-spring.datasource.username=postgres
-spring.datasource.password=admin
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-```
 
 ### Frontend
 
