@@ -77,7 +77,7 @@ export default function ModalCreateList({
           <div className="flex whitespace-nowrap gap-1 absolute bottom-1 left-1 w-[95%] px-1 overflow-x-clip">
             {tags.map((tag: string) => (
               <p key={tag} className="text-xs text-slate-500 min-w-fit">
-                <strong>#{tag.replace(" ", "-")}</strong>
+                <strong>#{tag.replaceAll(" ", "-")}</strong>
               </p>
             ))}
             <p className="text-xs text-slate-500 min-w-fit">

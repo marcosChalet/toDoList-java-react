@@ -52,7 +52,7 @@ export default function ToDoList({
       <div className="flex whitespace-nowrap gap-1 absolute bottom-1 left-1 w-[95%] px-1 overflow-x-clip">
         {toDoList.tags.map((tag: TagType) => (
           <p key={tag.id} className="text-xs text-slate-500 min-w-fit">
-            <strong>#{tag.name.replace(" ", "-")}</strong>
+            <strong>#{tag.name.replaceAll(" ", "-")}</strong>
           </p>
         ))}
       </div>
