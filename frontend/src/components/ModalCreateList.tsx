@@ -3,16 +3,20 @@ import { BsThreeDots } from "react-icons/bs";
 import BaseModal from "./BaseModal";
 import { TagType, ToDoListType } from "../core/toDoListType";
 
-import { useToDoCreateList } from "../hooks/useListDataCreate"
+import { useToDoCreateList } from "../hooks/useListDataCreate";
 
-export default function ModalCreateList() {
+export default function ModalCreateList({
+  isModalOpen,
+}: {
+  isModalOpen: (T: boolean) => void;
+}) {
   const [id] = useState<number>(16);
   const [title, setTitle] = useState<string>("");
   const [type, setType] = useState<number>(-1);
   const [tags, setTags] = useState<string[]>([]);
   const [tag, setTag] = useState<string>("");
 
-  const { mutate: insertList } = useToDoCreateList();
+  const { mutate: insertList } = useToDoCreateList(title);
 
   function addTag(e: React.KeyboardEvent<HTMLInputElement>, currText: string) {
     if (currText === "") return;
@@ -27,22 +31,22 @@ export default function ModalCreateList() {
     setType(type);
   }
 
-  function createList(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    // e.preventDefault();
+  function createList() {
     const tagList: TagType[] = tags.map((tag: string) => {
       const tagTmp: TagType = {
-        name: tag
-      }
+        name: tag,
+      };
       return tagTmp;
-    })
+    });
     const list: ToDoListType = {
       title,
       toDoType: type,
       tags: tagList,
-      toDos: []
-    }
-    console.log(list);
+      toDos: [],
+    };
+
     insertList(list);
+    isModalOpen(false);
   }
 
   return (
@@ -84,9 +88,7 @@ export default function ModalCreateList() {
           </div>
         </div>
 
-        <div     
-          className="w-full h-full flex justify-center items-center"
-        >
+        <div className="w-full h-full flex justify-center items-center">
           <div className="flex flex-col justify-center items-center gap-3 w-[500px] text-slate-400">
             <input
               value={title}
@@ -112,11 +114,12 @@ export default function ModalCreateList() {
             />
 
             <button
-              disabled
-              onClick={(e) => createList(e)}
+              onClick={createList}
               type="submit"
               className="bg-slate-700 text-lg font-bold uppercase w-full h-12 duration-300 hover:cursor-pointer hover:bg-slate-950"
-            >criar</button>
+            >
+              criar
+            </button>
           </div>
         </div>
       </div>

@@ -7,14 +7,13 @@ async function createList(data: ToDoListType): AxiosPromise<ToDoListType> {
   return response;
 }
 
-export function useToDoCreateList() {
+export function useToDoCreateList(title: string) {
     const queryClient = useQueryClient()
-
     const mutate = useMutation({
       mutationFn: createList,
       retry: 2,
       onSuccess: async () => {
-        await queryClient.invalidateQueries(['toDo-data'])
+        await queryClient.invalidateQueries(["toDo-data"])
       }
     });
   

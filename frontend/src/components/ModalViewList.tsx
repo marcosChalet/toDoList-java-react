@@ -5,16 +5,20 @@ import ToDo from "./ToDo";
 import BaseModal from "./BaseModal";
 import { ToDoListType } from "../core/toDoListType";
 
-import { useToDoDataMutate } from '../hooks/useTodoDataMutate'
+import { useToDoDataMutate } from "../hooks/useTodoDataMutate";
 
-export default function ModalViewList({ toDoList }: { toDoList: ToDoListType | null}) {
+export default function ModalViewList({
+  toDoList,
+}: {
+  toDoList: ToDoListType | null;
+}) {
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const { mutate } = useToDoDataMutate();
+  const { mutate } = useToDoDataMutate(toDoList?.title || "");
 
   function addTodo() {
     const toDo = {
       toDo: inputRef.current?.value ?? "",
-    }
+    };
 
     const mutateToDo: MutateType = {
       id: toDoList?.id ?? -1,

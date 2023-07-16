@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ToDoType } from "../core/toDoType";
 
 async function deleteToDo(id: number): AxiosPromise<ToDoType> {
-  const response = await axios.delete(`http://localhost:8080/lists/delete/${id}`);
+  const response = await axios.delete(`http://localhost:8080/lists/todo/delete/${id}`);
   return response;
 }
 

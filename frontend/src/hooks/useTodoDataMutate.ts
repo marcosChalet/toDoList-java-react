@@ -7,15 +7,16 @@ async function postTodos(data: MutateType): AxiosPromise<[MutateType]> {
   return response;
 }
 
-export function useToDoDataMutate() {
+export function useToDoDataMutate(title: string) {
 
   const queryClient = useQueryClient()
 
   const mutate = useMutation({
     mutationFn: postTodos,
     retry: 2,
+    mutationKey: [title],
     onSuccess: async () => {
-      await queryClient.invalidateQueries(['toDo-data'])
+      await queryClient.invalidateQueries(["toDo-data"])
     }
   });
 

@@ -8,8 +8,7 @@ import { MdNoteAdd } from "react-icons/md";
 import { useState } from "react";
 
 export default function App() {
-
-  const {data: toDoLists2} = useToDoData();
+  const { data: toDoLists } = useToDoData();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [toDoListToShow, setToDoListToShow] = useState<ToDoListType>();
   const [showModalCreateList, setShowModalCreateList] =
@@ -39,7 +38,8 @@ export default function App() {
       </header>
       <main className="container px-16 py-10 m-auto">
         <section className="flex gap-8 flex-wrap justify-center items-center">
-          {toDoLists2?.map((list: ToDoListType) => (
+          {toDoLists
+            ?.map((list: ToDoListType) => (
               <ToDoList key={list.id} toDoList={list} selectList={selectList} />
             ))
             .reverse()}
@@ -64,7 +64,7 @@ export default function App() {
           onClick={(e) => dropModal(e, () => setShowModalCreateList(false))}
           className="absolute w-full h-full backdrop-blur-sm overflow-hidden transition-opacity"
         >
-          <ModalCreateList />
+          <ModalCreateList isModalOpen={setShowModalCreateList} />
         </div>
       )}
     </div>
