@@ -1,5 +1,6 @@
 import { BsThreeDots } from "react-icons/bs";
 import { TagType, ToDoListType } from "../core/toDoListType";
+import { useEffect, useState } from "react";
 
 export default function ToDoList({
   toDoList,
@@ -8,6 +9,19 @@ export default function ToDoList({
   toDoList: ToDoListType;
   selectList: (item: ToDoListType) => void;
 }) {
+  const [isAvaliable, setIsAvaliable] = useState(false);
+
+  useEffect(() => {
+    setIsAvaliable(true);
+  }, []);
+
+  useEffect(() => {
+    if (isAvaliable) {
+      selectList(toDoList);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toDoList]);
+
   return (
     <div
       onClick={() => selectList(toDoList)}
