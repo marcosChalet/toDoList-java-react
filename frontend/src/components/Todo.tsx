@@ -1,10 +1,7 @@
-import { LuEdit } from "react-icons/lu";
 import { HiMiniTrash } from "react-icons/hi2";
-import { useTodoDataDelete } from "../hooks/useTodoDataDelete";
-import { useTodoDataUpdate } from "../hooks/useTodoDataUpdate";
-import { TodoType } from "../core/todoType";
+import { useToDoDataDelete } from "../hooks/useToDoDataDelete";
 
-export default function Todo({
+export default function ToDo({
   idx,
   id,
   title,
@@ -13,11 +10,7 @@ export default function Todo({
   id: number;
   title: string;
 }) {
-  const { mutate: mutateDelete } = useTodoDataDelete();
-
-  function deletefn() {
-    mutateDelete(id);
-  }
+  const { mutate: deleteToDo } = useToDoDataDelete();
 
   return (
     <div
@@ -28,7 +21,7 @@ export default function Todo({
       <p className="whitespace-nowrap overflow-x-hidden">{title}</p>
       <div className="flex items-center gap-1 ml-1">
         <button
-          onClick={deletefn}
+          onClick={() => deleteToDo(id)}
           className="text-xl text-red-600 p-1 rounded-full hover:scale-125 duration-300"
         >
           <HiMiniTrash />
