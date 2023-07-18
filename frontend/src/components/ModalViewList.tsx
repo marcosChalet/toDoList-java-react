@@ -35,7 +35,7 @@ export default function ModalViewList({
     <BaseModal>
       <>
         <h1 className="text-start w-full text-5xl mb-8 uppercase font-bold inline-block bg-gradient-to-r from-rose-600 to-violet-800 bg-clip-text text-transparent">
-          To-do App
+          {toDoList?.title}
         </h1>
         <div className="bg-slate-700 rounded-md max-h-96 overflow-y-auto">
           {toDoList?.toDos?.map((toDoItem: ToDoType, idx: number) => (
