@@ -7,7 +7,7 @@ async function fetchToDos(): AxiosPromise<[ToDoListType]> {
   return response;
 }
 
-export function useToDoData() {
+export function useToDoDataGet() {
   const query = useQuery({
     queryFn: fetchToDos,
     queryKey: ["toDo-data"],
