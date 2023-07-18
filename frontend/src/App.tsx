@@ -2,13 +2,13 @@ import ToDoList from "./components/ToDoList";
 import ModalViewList from "./components/ModalViewList";
 import ModalCreateList from "./components/ModalCreateList";
 import { ToDoListType } from "./core/toDoListType";
-import { useToDoData } from "./hooks/useListsData";
+import { useToDoDataGet } from "./hooks/useListsDataGet";
 
 import { MdNoteAdd } from "react-icons/md";
 import { useState } from "react";
 
 export default function App() {
-  const { data: toDoLists } = useToDoData();
+  const { data: toDoLists } = useToDoDataGet();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [toDoListToShow, setToDoListToShow] = useState<ToDoListType>();
   const [showModalCreateList, setShowModalCreateList] =
@@ -47,7 +47,7 @@ export default function App() {
       </main>
       <button
         onClick={() => setShowModalCreateList(true)}
-        className="absolute p-2 text-4xl bg-gradient-to-r from-rose-600 to-purple-600 rounded-es-xl rounded-se-xl bottom-12 right-12 duration-300 hover:scale-110 hover:cursor-cell"
+        className="absolute p-2 text-4xl bg-gradient-to-r from-rose-600 to-purple-600 rounded-es-xl rounded-se-xl bottom-20 right-20 duration-300 hover:scale-110 hover:cursor-cell"
       >
         <MdNoteAdd />
       </button>
