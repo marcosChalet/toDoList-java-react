@@ -12,7 +12,7 @@ export default function ModalCreateList({
 }) {
   const [id] = useState<number>(16);
   const [title, setTitle] = useState<string>("");
-  const [type, setType] = useState<number>(-1);
+  const [type, setType] = useState<number>(1);
   const [tags, setTags] = useState<string[]>([]);
   const [tag, setTag] = useState<string>("");
 
