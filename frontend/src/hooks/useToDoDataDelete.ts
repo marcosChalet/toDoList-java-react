@@ -2,22 +2,22 @@ import axios, { AxiosPromise } from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ToDoType } from "../core/toDoType";
 
-async function updateToDo(data: ToDoType): AxiosPromise<ToDoType> {
-  const response = await axios.put(`http://localhost:8080/todos/${data.id ?? -1}`, data);
+async function deleteToDo(id: number): AxiosPromise<ToDoType> {
+  const response = await axios.delete(`http://localhost:8080/lists/todo/delete/${id}`);
   return response;
 }
 
-export function useToDoDataUpdate() {
+export function useToDoDataDelete() {
 
   const queryClient = useQueryClient()
 
   const mutate = useMutation({
-    mutationFn: updateToDo,
+    mutationFn: deleteToDo,
     retry: 2,
     onSuccess: async () => {
       await queryClient.invalidateQueries(['toDo-data'])
     }
   });
 
-  return mutate
+  return mutate;
 }
