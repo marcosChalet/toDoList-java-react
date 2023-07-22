@@ -64,7 +64,10 @@ export default function App() {
           onClick={(e) => dropModal(e, () => setShowModalCreateList(false))}
           className="absolute w-full h-full backdrop-blur-sm overflow-hidden transition-opacity"
         >
-          <ModalCreateList isModalOpen={setShowModalCreateList} />
+          <ModalCreateList
+            lastId={toDoLists?.length}
+            isModalOpen={setShowModalCreateList}
+          />
         </div>
       )}
     </div>

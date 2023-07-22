@@ -6,11 +6,13 @@ import { TagType, ToDoListType } from "../core/toDoListType";
 import { useToDoCreateList } from "../hooks/useListDataCreate";
 
 export default function ModalCreateList({
+  lastId,
   isModalOpen,
 }: {
+  lastId: number;
   isModalOpen: (T: boolean) => void;
 }) {
-  const [id] = useState<number>(16);
+  const [id, setId] = useState<number>(lastId + 1);
   const [title, setTitle] = useState<string>("");
   const [type, setType] = useState<number>(1);
   const [tags, setTags] = useState<string[]>([]);
@@ -45,6 +47,7 @@ export default function ModalCreateList({
       toDos: [],
     };
 
+    setId((prev) => prev + 1);
     insertList(list);
     isModalOpen(false);
   }
