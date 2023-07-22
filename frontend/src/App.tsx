@@ -65,7 +65,7 @@ export default function App() {
           className="absolute w-full h-full backdrop-blur-sm overflow-hidden transition-opacity"
         >
           <ModalCreateList
-            lastId={toDoLists?.length}
+            lastId={toDoLists?.length || 0}
             isModalOpen={setShowModalCreateList}
           />
         </div>
