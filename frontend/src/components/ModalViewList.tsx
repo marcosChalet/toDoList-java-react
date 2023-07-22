@@ -5,7 +5,7 @@ import ToDo from "./ToDo";
 import BaseModal from "./BaseModal";
 import { ToDoListType } from "../core/toDoListType";
 
-import { useToDoDataMutate } from "../hooks/useTodoDataMutate";
+import { useToDoDataMutate } from "../hooks/useToDoDataMutate";
 
 export default function ModalViewList({
   toDoList,

@@ -1,5 +1,5 @@
 import { HiMiniTrash } from "react-icons/hi2";
-import { useToDoDataDelete } from "../hooks/useTodoDataDelete";
+import { useToDoDataDelete } from "../hooks/useToDoDataDelete";
 
 export default function ToDo({
   idx,
