@@ -9,7 +9,9 @@ Para rodar o projeto execute:
 
 ```
 git clone https://github.com/marcosChalet/toDoList-java-react toDoList &&
-cd toDoList &&
+cd toDoList/backend/api &&
+mvn clean install -DskipTests &&
+cd ../../ &&
 docker compose up -d
 ```
 
