@@ -21,6 +21,16 @@ cd ../../ &&
 docker compose up -d
 ```
 
+Alternativamente, no Ubuntu:
+```
+git clone https://github.com/marcosChalet/toDoList-java-react toDoList &&
+cd toDoList/backend/api &&
+chmod +x ./mvnw &&
+./mvnw clean install -DskipTests &&
+cd ../../ &&
+docker compose up -d
+```
+
 Após isso o backend estará sendo executado na porta 8080 e o frontend será acessível na porta 5173. Você poderá acessar a aplicação no seu navegador através do endereço [http://localhost:5173](http://localhost:5173).
 
 ## Uso
