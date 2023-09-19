@@ -5,6 +5,12 @@ Este é um projeto de uma aplicação Todo List desenvolvida utilizando Spring B
 ![image](https://github.com/marcosChalet/todolist-java-react/assets/72557256/80aa8989-646c-4b50-9965-fd72c2204cdf)
 ![image](https://github.com/marcosChalet/todolist-java-react/assets/72557256/a2dcfb8e-1c9d-4408-9eea-18615d0152e8)
 
+## Pré-requisitos
+Antes de executar o projeto, certifique-se de ter as seguintes ferramentas instaladas em seu ambiente de desenvolvimento:
+
+- Java Development Kit (JDK) 17 ou superior
+- Git
+
 Para rodar o projeto execute:
 
 ```
