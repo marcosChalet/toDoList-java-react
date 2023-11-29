@@ -6,28 +6,15 @@ Este é um projeto de uma aplicação Todo List desenvolvida utilizando Spring B
 ![image](https://github.com/marcosChalet/todolist-java-react/assets/72557256/a2dcfb8e-1c9d-4408-9eea-18615d0152e8)
 
 ## Pré-requisitos
+
 Antes de executar o projeto, certifique-se de ter as seguintes ferramentas instaladas em seu ambiente de desenvolvimento:
 
 - Java Development Kit (JDK) 17 ou superior
 - Git
 
-Para rodar o projeto execute:
+**_Para rodar o projeto execute:_**
 
 ```
-git clone https://github.com/marcosChalet/toDoList-java-react toDoList &&
-cd toDoList/backend/api &&
-mvn clean install -DskipTests &&
-cd ../../ &&
-docker compose up -d
-```
-
-Alternativamente, no Ubuntu:
-```
-git clone https://github.com/marcosChalet/toDoList-java-react toDoList &&
-cd toDoList/backend/api &&
-chmod +x ./mvnw &&
-./mvnw clean install -DskipTests &&
-cd ../../ &&
 docker compose up -d
 ```
 
