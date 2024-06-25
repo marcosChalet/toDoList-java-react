@@ -2,8 +2,10 @@ import axios, { AxiosPromise } from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ToDoType } from "../core/toDoType";
 
+const apiDeleteTodoUrl = `${import.meta.env.VITE_API_URL}/lists/todo/delete`
+
 async function deleteToDo(id: number): AxiosPromise<ToDoType> {
-  const response = await axios.delete(`http://localhost:8080/lists/todo/delete/${id}`);
+  const response = await axios.delete(`${apiDeleteTodoUrl}/${id}`);
   return response;
 }
 

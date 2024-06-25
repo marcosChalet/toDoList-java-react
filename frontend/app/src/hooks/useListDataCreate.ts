@@ -2,8 +2,11 @@ import axios, { AxiosPromise } from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ToDoListType } from "../core/toDoListType";
 
+const apiCreateListUrl = `${import.meta.env.VITE_API_URL}/lists/create`
+
 async function createList(data: ToDoListType): AxiosPromise<ToDoListType> {
-  const response = await axios.post("http://localhost:8080/lists/create", data);
+  console.log("Log:", apiCreateListUrl)
+  const response = await axios.post(apiCreateListUrl, data);
   return response;
 }
 

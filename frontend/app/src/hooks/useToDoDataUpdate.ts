@@ -2,8 +2,10 @@ import axios, { AxiosPromise } from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ToDoType } from "../core/toDoType";
 
+const apiUpdateTodoUrl = `${import.meta.env.VITE_API_URL}/lists/todos`
+
 async function updateToDo(data: ToDoType): AxiosPromise<ToDoType> {
-  const response = await axios.put(`http://localhost:8080/todos/${data.id ?? -1}`, data);
+  const response = await axios.put(`${apiUpdateTodoUrl}/${data.id ?? -1}`, data);
   return response;
 }
 
