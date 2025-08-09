@@ -2,11 +2,10 @@ services:
   app:
     build:
       context: ./frontend
-      dockerfile: ./Dockerfile
     ports:
       - 5173:5173
     environment:
-      - VITE_API_URL=http://localhost:8080
+      - VITE_API_URL=http://localhost:8080/api/v1
     depends_on:
       - api
     networks:
@@ -15,11 +14,10 @@ services:
   api:
     build:
       context: ./backend
-      dockerfile: ./Dockerfile
     ports:
       - 8080:8080
     environment:
-      - DATABASE_URL=jdbc:postgresql://db:5432/toDo-db
+      - DATABASE_URL=jdbc:postgresql://db:5432/daily-report-db
       - DATABASE_USERNAME=postgres
       - DATABASE_PASSWORD=admin
     depends_on:
@@ -35,7 +33,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=toDo-db
+      - POSTGRES_DB=daily-report-db
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
