@@ -1,6 +1,8 @@
 [submodule "backend"]
 	path = backend
 	url = https://github.com/marcosChalet/daily-report-backend.git
+	branch = main
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/marcosChalet/daily-report-frontend.git
+	branch = main
